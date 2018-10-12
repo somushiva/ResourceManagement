@@ -14,6 +14,7 @@ sap.ui.define([
   var oModelContext = oEvent.getParameter("listItem").getBindingContext().getObject();
  
   var oArray = [];
+  var a="hello";
   oArray.push(oModelContext);
   var dialogModel = new sap.ui.model.json.JSONModel();
   this.getView().setModel(dialogModel,"DialogModel");
