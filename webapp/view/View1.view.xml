@@ -1,0 +1,107 @@
+<mvc:View controllerName="ResourceManagement.controller.View1" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:semantic="sap.m.semantic" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<App>
+		<pages>
+			<Page title="{i18n>title}">
+				<content>
+					<SplitContainer>
+						<masterPages>
+							<semantic:MasterPage title="Employee List" showNavButton="true" navButtonPress="onPressButton">
+								<SearchField width="100%" search="onFilterProducts"/>
+								<List id="List1" mode="SingleSelectMaster" selectionChange="showDetails" items="{ path: '/Invoices'}">
+									<items>
+										<ObjectListItem title="{Name}" number="{path: 'PSID', formatter: '.formatter.currencyFormateOne'}"
+											numberState="{= ${PSID} > 1000 ? 'Success' : 'Warning'}" type="Navigation" press="showDetails">
+											<ObjectAttribute text="{Skill}"/>
+										</ObjectListItem>
+									</items>
+								</List>
+								<semantic:customFooterContent>
+									<OverflowToolbarButton icon="sap-icon://sort" press="openDialog"/>
+								</semantic:customFooterContent>
+								<semantic:filter>
+									<semantic:FilterSelect change="onSemanticSelectFilter">
+										<core:Item text="Less Than 100" key="Price___LE___100___X"/>
+										<core:Item text="Between 100 and 1000" key="Price___BT___100___1000"/>
+										<core:Item text="More Than 1000" key="Price___GT___1000___X"/>
+									</semantic:FilterSelect>
+								</semantic:filter>
+								<semantic:group>
+									<semantic:GroupSelect change="onSemanticSelectGroup">
+										<core:Item key="Price" text="Price"/>
+										<core:Item key="Category" text="Category"/>
+									</semantic:GroupSelect>
+								</semantic:group>
+								<semantic:multiSelectAction>
+									<semantic:MultiSelectAction press="onMultiSelectPress"/>
+								</semantic:multiSelectAction>
+							</semantic:MasterPage>
+						</masterPages>
+						<detailPages>
+							<semantic:DetailPage title="Employee Details">
+								<semantic:content>
+									<ObjectHeader id="objectHeader" title="{DialogModel>/ProductSelected/0/Name}" titleActive="true" titlePress="onShowDetailPopover"
+										responsive="true" number="{ path: 'DialogModel>/ProductSelected/0/PSID', formatter: '.formatter.currencyFormateOne' }">
+										<attributes>
+											<ObjectAttribute text="{DialogModel>/ProductSelected/0/Skill}"/>
+										</attributes>
+									</ObjectHeader>
+									<IconTabBar id="iconTabBar" class="tabBar" select="handleIconTabBarSelect">
+										<items>
+											<IconTabFilter icon="sap-icon://group" iconColor="Positive" text="Employee Data" key="Emp Data" tooltip="Employee Data">
+												<content>
+													<VBox class="sapUiSmallMargin">
+														<f:SimpleForm id="SimpleFormDisplay354" editable="false" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3"
+															labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1"
+															columnsL="1" columnsM="1" singleContainerFullSize="false">
+															<f:content>
+																<Label text="Email"/>
+																<Text id="nameText" text="{DialogModel>/ProductSelected/0/Email}"/>
+																<Label text="Grade"/>
+																<Text text="{DialogModel>/ProductSelected/0/Grade}"/>
+																<Label text="Hire-Date"/>
+																<Text text="{DialogModel>/ProductSelected/0/Hire-Date}"/>
+																<Label text="Total-Exp"/>
+																<Text id="countryText" text="{DialogModel>/ProductSelected/0/Total-Exp}"/>
+															</f:content>
+														</f:SimpleForm>
+													</VBox>
+												</content>
+											</IconTabFilter>
+											<IconTabSeparator/>
+											<IconTabFilter icon="sap-icon://manager" iconColor="Positive" count="" text="Project Details" key="Project Details"
+												tooltip="Project Details">
+												<content>
+													<f:SimpleForm id="SimpleFormDisplay" editable="false" layout="ResponsiveGridLayout" title="" labelSpanXL="3" labelSpanL="3"
+															labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1"
+															columnsL="1" columnsM="1" singleContainerFullSize="false">
+															<f:content>
+																<Label text="Customer"/>
+																<Text id="nameText1" text="{DialogModel>/ProductSelected/0/Customer}"/>
+																<Label text="ProjectName"/>
+																<Text text="{DialogModel>/ProductSelected/0/ProjectName}"/>
+																<Label text="Reporting Manager"/>
+																<Text text="{DialogModel>/ProductSelected/0/Reporting Manager}"/>
+																<Label text="ProjectType"/>
+																<Text id="countryText1" text="{DialogModel>/ProductSelected/0/ProjectType}"/>
+																<Label text="LocationCatagory"/>
+																<Text text="{DialogModel>/ProductSelected/0/LocationCatagory}"/>
+																<Label text="Country"/>
+																<Text text="{DialogModel>/ProductSelected/0/Country}"/>
+																<Label text="City"/>
+																<Text text="{DialogModel>/ProductSelected/0/City}"/>
+															</f:content>
+														</f:SimpleForm>
+												</content>
+											</IconTabFilter>
+										</items>
+									</IconTabBar>
+								</semantic:content>
+							</semantic:DetailPage>
+						</detailPages>
+					</SplitContainer>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
